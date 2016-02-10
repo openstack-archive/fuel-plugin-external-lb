@@ -1,0 +1,18 @@
+- id: "mgmt/vip"
+  default_mapping: "management"
+  properties:
+    gateway: false
+    subnet: true
+    vip: []
+- id: "public/vip"
+  default_mapping: "public"
+  properties:
+    gateway: true
+    subnet: true
+    vip: []
+- id: "ironic/baremetal"
+  default_mapping: "baremetal"
+  properties:
+    gateway: false
+    subnet: true
+    vip: []

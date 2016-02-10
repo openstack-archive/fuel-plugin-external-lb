@@ -1,0 +1,90 @@
+attributes:
+  external_public_vip:
+    type: "checkbox"
+    weight: 10
+    value: true
+    label: "Use external LB for public VIP"
+    description: "Whether we should use external LB for public VIP."
+  skip_vrouter_pub_vip:
+    type: "checkbox"
+    weight: 20
+    value: true
+    label: "Skip vrouter public VIP"
+    description: "If you're moving controllers in different racks then you should disable vrouter VIPs because they won't work. All the routing is configured via rack switches."
+    restrictions:
+      - condition: "settings:external_loadbalancer.external_public_vip.value == false"
+  public_ip:
+    value: "10.10.1.1"
+    label: "Public host"
+    description: "Public IP or FQDN of external LB"
+    weight: 30
+    type: "text"
+    restrictions:
+      - condition: "settings:external_loadbalancer.external_public_vip.value == false"
+  external_management_vip:
+    type: "checkbox"
+    weight: 40
+    value: true
+    label: "Use external LB for management VIP"
+    description: "Whether we should use external LB for management VIP."
+  skip_vrouter_vip:
+    type: "checkbox"
+    weight: 50
+    value: true
+    label: "Skip vrouter management VIP"
+    description: "If you're moving controllers in different racks then you should disable vrouter VIPs because they won't work. All the routing is configured via rack switches."
+    restrictions:
+      - condition: "settings:external_loadbalancer.external_management_vip.value == false"
+  management_ip:
+    value: "10.10.2.1"
+    label: "Management host"
+    description: "Management IP or FQDN of external LB"
+    weight: 60
+    type: "text"
+    restrictions:
+      - condition: "settings:external_loadbalancer.external_management_vip.value == false"
+  enable_fake_floating:
+    type: "checkbox"
+    weight: 70
+    value: false
+    label: "Enable fake floating IPs"
+    description: "Floating IPs won't work if you move controllers into different network node groups (racks). So your VMs will have access only to fixed network, they won't be able to access Internet or any other external networks. If you enable this fake floating IPs feature, then you still won't be able to access VMs via floating IPs (impossible by design), but your VMs will be able to access Internet and other external networks."
+  fake_floating_cidr:
+    value: "10.10.10.0/24"
+    label: "Floating CIDR"
+    description: "Fake floating IP CIDR, should not match with existing networks"
+    weight: 80
+    type: "text"
+    regex:
+      source: '^(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\/([1-9]|[1-2]\d|3[0-2])$'
+      error: "Invalid CIDR"
+    restrictions:
+      - condition: "settings:external_loadbalancer.enable_fake_floating.value == false"
+        message: "You should enable fake floating IPs"
+        action: hide
+  fake_floating_range:
+    value: "10.10.10.2:10.10.10.254"
+    label: "Floating IP range"
+    description: "Fake floating IP range, will be used for tenant routers"
+    weight: 90
+    type: "text"
+    regex:
+      source: '^(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\:(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+      error: "Invalid IP range"
+    restrictions:
+      - condition: "settings:external_loadbalancer.enable_fake_floating.value == false"
+        message: "You should enable fake floating IPs"
+        action: hide
+  fake_floating_gw:
+    value: "10.10.10.1"
+    label: "Floating gateway"
+    description: "Fake floating gateway"
+    weight: 100
+    type: "text"
+    regex:
+      source: '^(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+      error: "Invalid IP"
+    restrictions:
+      - condition: "settings:external_loadbalancer.enable_fake_floating.value == false"
+        message: "You should enable fake floating IPs"
+        action: hide
