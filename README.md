@@ -27,6 +27,20 @@ After this you can open any yaml in `./deployment_1/` directory and check contro
 
 If you want to Public TLS then please note that Fuel generates self-signed SSL certificate during deployment, so you can't download it before deployment starts and configure it on external load balancer. The best solution is to create your own certificate (self signed or issued) and upload it via Environment -> Settings -> Security.
 
+**Important!** It's required to configure mysql-status frontend on external load-balancer (we do not configure such frontend on controllers using Haproxy because we use mysql frontend for that). This frontend should balance 49000 port across all controllers with HTTP chk option. Here's an example of frontend config for Haproxy:
+
+```
+listen mysqld-status
+  bind 1.1.1.1:49000
+  http-request  set-header X-Forwarded-Proto https if { ssl_fc }
+  option  httpchk
+  option  httplog
+  option  httpclose
+  server node-1 10.144.2.11:49000 check inter 20s fastinter 2s downinter 2s rise 3 fall 3
+  server node-3 10.146.2.11:49000 check inter 20s fastinter 2s downinter 2s rise 3 fall 3
+  server node-2 10.145.2.12:49000 check inter 20s fastinter 2s downinter 2s rise 3 fall 3
+```
+
 ## Known limitations
 * OSTF is not working
 * Floating IPs are not working if controllers are in different racks
