@@ -6,7 +6,7 @@ fuel_version: ['8.0']
 licenses: ['Apache License, Version 2.0']
 authors:
   - 'Aleksandr Didenko <adidenko@mirantis.com>'
-homepage: 'https://github.com/adidenko/fuel-plugin-external-lb'
+homepage: 'https://github.com/openstack/fuel-plugin-external-lb'
 groups: ['network']
 releases:
   - os: ubuntu
