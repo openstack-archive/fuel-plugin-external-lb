@@ -1,0 +1,9 @@
+Code-Review+2: Aleksandr Didenko <adidenko@mirantis.com>
+Workflow+1: Aleksandr Didenko <adidenko@mirantis.com>
+Code-Review+1: Sergey Vasilenko <svasilenko@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 10 Feb 2016 14:41:15 +0000
+Reviewed-on: https://review.openstack.org/278382
+Project: openstack/fuel-plugin-external-lb
+Branch: refs/heads/master
