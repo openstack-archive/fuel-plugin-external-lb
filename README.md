@@ -1,4 +1,25 @@
-# fuel-plugin-external-lb
+fuel-plugin-external-lb
+=======================
+
+**Table of Contents**
+
+  * [Purpose](#purpose)
+  * [Compatibility](#compatibility)
+  * [Requirements](#requirements)
+  * [Known limitations](#known-limitations)
+  * [Configuration](#configuration)
+  * [How it works](#how-it-works)
+    * [Changes in deployment](#changes-in-deployment)
+      * [Default deployment procedure](#default-deployment-procedure)
+      * [Deployment with External LB](#deployment-with-external-lb)
+    * [Changes in haproxy_backend_status puppet resource](#changes-in-haproxy_backend_status-puppet-resource)
+      * [Default deployment procedure](#default-deployment-procedure-1)
+      * [Deployment with External LB](#deployment-with-external-lb-1)
+  * [How to move controllers to different racks?](#how-to-move-controllers-to-different-racks)
+    * [IP traffic flow chart](#ip-traffic-flow-chart)
+      * [Default IP flow](#default-ip-flow)
+      * [New IP flow with "fake floating network"](#new-ip-flow-with-fake-floating-network)
+
 
 ## Purpose
 The main purpose of this plugin is to provide ability to use external load balancer instead of Haproxy which is deployed on controllers.
