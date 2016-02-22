@@ -19,5 +19,5 @@ releases:
     mode: ['ha']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/centos
-package_version: '4.0.0'
+package_version: '3.0.0'
 is_hotpluggable: false
