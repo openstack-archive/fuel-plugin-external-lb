@@ -5,6 +5,7 @@ fuel-plugin-external-lb
 
   * [Purpose](#purpose)
   * [Compatibility](#compatibility)
+  * [How to build plugin](#how-to-build-plugin)
   * [Requirements](#requirements)
   * [Known limitations](#known-limitations)
   * [Configuration](#configuration)
@@ -31,6 +32,17 @@ It can also allow cloud operators to move controllers into different racks (see 
 | Plugin version | Fuel version |
 | -------------- | ------------ |
 | 1.x.x          | Fuel-8.x     |
+
+## How to build plugin
+
+* Install fuel plugin builder (fpb)
+* Clone plugin repo and run fpb there:
+  ```
+    git clone https://github.com/openstack/fuel-plugin-external-lb
+    cd fuel-plugin-external-lb
+    fpb --build .
+  ```
+* Check if file `external_loadbalancer-*.noarch.rpm` was created.
 
 ## Requirements
 External load balancer configuration is out of scope of this plugin. We assume that you configure load balancer by other means (manually or by some other Fuel plugin).
