@@ -37,11 +37,11 @@ It can also allow cloud operators to move controllers into different racks (see 
 
 * Install fuel plugin builder (fpb)
 * Clone plugin repo and run fpb there:
-  ```
-    git clone https://github.com/openstack/fuel-plugin-external-lb
-    cd fuel-plugin-external-lb
-    fpb --build .
-  ```
+```
+git clone https://github.com/openstack/fuel-plugin-external-lb
+cd fuel-plugin-external-lb
+fpb --build .
+```
 * Check if file `external_loadbalancer-*.noarch.rpm` was created.
 
 ## Requirements
