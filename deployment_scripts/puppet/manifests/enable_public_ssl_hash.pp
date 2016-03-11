@@ -6,7 +6,7 @@ $plugin_name = 'external_loadbalancer'
 $external_lb = hiera("$plugin_name")
 $ssl_hash    = hiera_hash('use_ssl', {})
 
-if empty($ssl_hash) and !is_ip_address($external_lb['external_public_vip']){
+if empty($ssl_hash) and !is_ip_address($external_lb['public_ip']){
   notice('Removing hiera override which disables adding of $public_vip to /etc/hosts')
   file {'/etc/hiera/override/configuration/cluster.yaml':
     ensure => present,
