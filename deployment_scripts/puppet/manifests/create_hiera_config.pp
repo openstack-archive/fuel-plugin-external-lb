@@ -17,20 +17,16 @@ network_metadata:
     management:
       ipaddr: <%= @external_lb['management_ip'] %>
       namespace: false
-<% if @external_lb['skip_vrouter_vip'] -%>
     vrouter:
       namespace: false
       ipaddr: <%= @master_ip %>
-<% end -%>
 <% end -%>
 <% if @external_lb['external_public_vip'] -%>
     public:
       ipaddr: <%= @external_lb['public_ip'] %>
       namespace: false
-<% if @external_lb['skip_vrouter_pub_vip'] -%>
     vrouter_pub:
       namespace: false
-<% end -%>
 run_ping_checker: false
 <% end -%>
 <% if @external_lb['external_public_vip'] and @external_lb['enable_fake_floating'] -%>

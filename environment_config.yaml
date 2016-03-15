@@ -5,14 +5,6 @@ attributes:
     value: true
     label: "Use external LB for public VIP"
     description: "Whether we should use external LB for public VIP."
-  skip_vrouter_pub_vip:
-    type: "checkbox"
-    weight: 20
-    value: true
-    label: "Skip vrouter public VIP"
-    description: "If you're moving controllers in different racks then you should disable vrouter VIPs because they won't work. All the routing is configured via rack switches."
-    restrictions:
-      - condition: "settings:external_loadbalancer.external_public_vip.value == false"
   public_ip:
     value: "10.10.1.1"
     label: "Public host"
@@ -27,14 +19,6 @@ attributes:
     value: true
     label: "Use external LB for management VIP"
     description: "Whether we should use external LB for management VIP."
-  skip_vrouter_vip:
-    type: "checkbox"
-    weight: 50
-    value: true
-    label: "Skip vrouter management VIP"
-    description: "If you're moving controllers in different racks then you should disable vrouter VIPs because they won't work. All the routing is configured via rack switches."
-    restrictions:
-      - condition: "settings:external_loadbalancer.external_management_vip.value == false"
   management_ip:
     value: "10.10.2.1"
     label: "Management host"
