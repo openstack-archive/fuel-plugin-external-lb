@@ -1,4 +1,5 @@
 - id: external-lb-hiera
+  version: 2.0.0
   type: puppet
   role: '*'
   requires: [pre_hiera_config]
@@ -9,6 +10,7 @@
     timeout: 360
 
 - id: external-lb-ovs-to-ns-port
+  version: 2.0.0
   type: puppet
   groups: [primary-controller, controller]
   requires: [deploy_start, netconfig, cluster-vrouter]
@@ -20,24 +22,25 @@
 
 # This is a workaround to disable adding record to hosts file if we use FQDN external host
 - id: disable-public-ssl-hash
+  version: 2.0.0
   type: puppet
   groups: [primary-controller, controller]
   requires: [ssl-add-trust-chain]
   required_for: [ssl-dns-setup]
-  condition: "settings:public_ssl.horizon.value == true or settings:public_ssl.services.value == true"
+  condition: "settings:public_ssl.horizon == true or settings:public_ssl.services == true"
   parameters:
     puppet_manifest: puppet/manifests/disable_public_ssl_hash.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 60
 
 - id: enable-public-ssl-hash
+  version: 2.0.0
   type: puppet
   groups: [primary-controller, controller]
   requires: [ssl-dns-setup]
   required_for: [hosts]
-  condition: "settings:public_ssl.horizon.value == true or settings:public_ssl.services.value == true"
+  condition: "settings:public_ssl.horizon == true or settings:public_ssl.services == true"
   parameters:
     puppet_manifest: puppet/manifests/enable_public_ssl_hash.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 60
-
