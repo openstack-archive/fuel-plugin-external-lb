@@ -10,7 +10,7 @@ if $external_lb['external_public_vip'] and $external_lb['enable_fake_floating'] 
   $service_name = 'p_exlb_floating_port'
   $primitive_type = 'ovs_to_ns_port'
   $complex_type   = 'clone'
-  $ms_metadata = {
+  $complex_metadata = {
     'interleave' => true,
   }
   $metadata = {
@@ -52,14 +52,14 @@ if $external_lb['external_public_vip'] and $external_lb['enable_fake_floating'] 
     require    => File['/usr/lib/ocf/resource.d/fuel/ovs_to_ns_port'],
   }
 
-  pacemaker_wrappers::service { $service_name :
-    primitive_type => $primitive_type,
-    parameters     => $parameters,
-    metadata       => $metadata,
-    operations     => $operations,
-    ms_metadata    => $ms_metadata,
-    complex_type   => $complex_type,
-    prefix         => false,
-    require        => File['/usr/lib/ocf/resource.d/fuel/ovs_to_ns_port'],
+  pacemaker::service { $service_name :
+    primitive_type   => $primitive_type,
+    parameters       => $parameters,
+    metadata         => $metadata,
+    operations       => $operations,
+    complex_metadata => $ms_metadata,
+    complex_type     => $complex_type,
+    prefix           => false,
+    require          => File['/usr/lib/ocf/resource.d/fuel/ovs_to_ns_port'],
   }
 }
