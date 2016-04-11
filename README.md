@@ -29,9 +29,10 @@ It can also allow cloud operators to move controllers into different racks (see 
 
 ## Compatibility
 
-| Plugin version | Fuel version |
-| -------------- | ------------ |
-| 1.x.x          | Fuel-8.x     |
+| Plugin version | Branch        | Fuel version |
+| -------------- | ------------- | ------------ |
+| 1.x.x          | stable/8.0    | Fuel-8.x     |
+| 2.x.x          | stable/mitaka | Fuel-9.x     |
 
 ## How to build plugin
 
