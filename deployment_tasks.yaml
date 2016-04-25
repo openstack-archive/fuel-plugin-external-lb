@@ -3,13 +3,13 @@
   type: puppet
   groups: ['/.*/']
   requires: [hiera]
-  required_for: [hiera-update]
+  required_for: [external-lb-hiera-update]
   parameters:
     puppet_manifest: puppet/manifests/create_hiera_config.pp
     puppet_modules: puppet/modules:/etc/puppet/modules
     timeout: 360
 
-- id: hiera-update
+- id: external-lb-hiera-update
   version: 2.0.0
   type: puppet
   groups: ['/.*/']
