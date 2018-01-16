@@ -109,7 +109,7 @@ General workflow
 `haproxy_backend_status` puppet resource connects to HAproxy status URL, gets the list of all frontends/backends, finds the needed one and checks if it’s UP or DOWN (`haproxy` provider). Example for keystone-api:
 
 * Connect to http://$LOAD_BALANCER_IP:10000/;csv   ($LOAD_BALANCER_IP = VIP)
-* Get list of frontends and check if 'kestone-1' backend is UP
+* Get list of frontends and check if 'keystone-1' backend is UP
 
 #### Deployment with External LB
 `haproxy_backend_status` puppet resource connects to frontend URL directly and checks response HTTP code (`http` provider). Example for keystone-api:
